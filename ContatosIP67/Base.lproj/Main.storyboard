@@ -32,7 +32,7 @@
                     <navigationItem key="navigationItem" title="Contatos" id="j3L-Ez-dFq">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="dy7-b0-PQi">
                             <connections>
-                                <segue destination="BYZ-38-t0r" kind="show" id="m9J-E6-5tY"/>
+                                <segue destination="BYZ-38-t0r" kind="show" identifier="FormSegue" id="m9J-E6-5tY"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>

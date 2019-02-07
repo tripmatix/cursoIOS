@@ -9,7 +9,7 @@
 import UIKit
 
 class FormularioContatoViewController: UIViewController {
-
+    
     @IBOutlet weak var nome:       UITextField!
     @IBOutlet weak var telefone:   UITextField!
     @IBOutlet weak var endereco:   UITextField!
@@ -17,46 +17,48 @@ class FormularioContatoViewController: UIViewController {
     
     var dao:ContatoDao
     
+    var delegate: FormularioContatoViewControllerDelegate?
+    
     required init?(coder aDecoder: NSCoder) {
         self.dao = ContatoDao.sharedInstance()
         
         super.init(coder: aDecoder)
     }
-
+    
     var contato: Contato!
     
     @IBAction func criarContato(){
         
-        pegaDadosDoFormulario()
+        //       pegaDadosDoFormulario()
+        self.pegaDadosDoFormulario()
         dao.adiciona(contato)
         
-/*        for contato in dao.contatos{
-            print(dao.contatos)
-            print("    ")
-        }
- */
+        self.delegate?.contatoAdicionado(contato)
         
         _ = self.navigationController?.popViewController(animated: true)
-    }   
+    }
     
     
     func pegaDadosDoFormulario(){
         
         if contato == nil{
-        self.contato = Contato();
-//        let contato: Contato = Contato()
+            self.contato = Contato();
+            //        let contato: Contato = Contato()
         }
         contato.nome     = self.nome.text
         contato.telefone = self.telefone.text
         contato.endereco = self.endereco.text
         contato.site     = self.site.text
     }
- 
+    
     func atualizaContato(){
         pegaDadosDoFormulario()
         
+        self.delegate?.contatoAtualizado(contato)
+        
         _ = self.navigationController?.popViewController(animated: true)
     }
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -71,7 +73,7 @@ class FormularioContatoViewController: UIViewController {
             self.navigationItem.rightBarButtonItem = botaoAlterar
         }
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.

@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ListaContatosViewController: UITableViewController {
+class ListaContatosViewController: UITableViewController, FormularioContatoViewControllerDelegate {
     
     var dao:ContatoDao
     static let cellIdentifier = "Cell"
@@ -100,10 +100,30 @@ class ListaContatosViewController: UITableViewController {
         
         let formulario = storyboard.instantiateViewController(withIdentifier: "Form-Contato") as!FormularioContatoViewController
         
+        formulario.delegate = self
         formulario.contato = contato
         
         self.navigationController?.pushViewController(formulario, animated: true)
     }
+    
+    func contatoAtualizado(_ contato:Contato){
+        print("contato atualizado: \(contato.nome)");
+    }
+    
+    func contatoAdicionado(_ contato:Contato){
+        print("contato adicionado: \(contato.nome)");
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?){
+        if segue.identifier == "FormSegue"{
+            if let formulario = segue.destination as? FormularioContatoViewController{
+                formulario.delegate = self
+            }
+        }
+    }
+
+  
+
     /*
     // Override to support rearranging the table view.
     override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
@@ -130,3 +150,4 @@ class ListaContatosViewController: UITableViewController {
     */
 
 }
+

@@ -16,6 +16,7 @@
 		FD9D88C3220A4B0F003D8C9B /* Contato.m in Sources */ = {isa = PBXBuildFile; fileRef = FD9D88C2220A4B0F003D8C9B /* Contato.m */; };
 		FD9D88C5220A55A9003D8C9B /* ContatoDao.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD9D88C4220A55A9003D8C9B /* ContatoDao.swift */; };
 		FD9D88C7220A619A003D8C9B /* ListaContatosViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD9D88C6220A619A003D8C9B /* ListaContatosViewController.swift */; };
+		FD9D88CB220CD88B003D8C9B /* FormularioContatoViewControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD9D88CA220CD88B003D8C9B /* FormularioContatoViewControllerDelegate.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,6 +33,7 @@
 		FD9D88C2220A4B0F003D8C9B /* Contato.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Contato.m; sourceTree = "<group>"; };
 		FD9D88C4220A55A9003D8C9B /* ContatoDao.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContatoDao.swift; sourceTree = "<group>"; };
 		FD9D88C6220A619A003D8C9B /* ListaContatosViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListaContatosViewController.swift; sourceTree = "<group>"; };
+		FD9D88CA220CD88B003D8C9B /* FormularioContatoViewControllerDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FormularioContatoViewControllerDelegate.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -67,6 +69,7 @@
 				FD9D88AB220A3284003D8C9B /* AppDelegate.swift */,
 				FD9D88AD220A3284003D8C9B /* FormularioContatoViewController.swift */,
 				FD9D88C6220A619A003D8C9B /* ListaContatosViewController.swift */,
+				FD9D88CA220CD88B003D8C9B /* FormularioContatoViewControllerDelegate.swift */,
 				FD9D88C4220A55A9003D8C9B /* ContatoDao.swift */,
 				FD9D88C1220A4B0F003D8C9B /* Contato.h */,
 				FD9D88C2220A4B0F003D8C9B /* Contato.m */,
@@ -155,6 +158,7 @@
 			files = (
 				FD9D88C3220A4B0F003D8C9B /* Contato.m in Sources */,
 				FD9D88AE220A3284003D8C9B /* FormularioContatoViewController.swift in Sources */,
+				FD9D88CB220CD88B003D8C9B /* FormularioContatoViewControllerDelegate.swift in Sources */,
 				FD9D88C5220A55A9003D8C9B /* ContatoDao.swift in Sources */,
 				FD9D88C7220A619A003D8C9B /* ListaContatosViewController.swift in Sources */,
 				FD9D88B4220A3284003D8C9B /* ContatosIP67.xcdatamodeld in Sources */,
