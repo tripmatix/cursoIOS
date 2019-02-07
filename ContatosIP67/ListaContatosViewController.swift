@@ -11,6 +11,9 @@ import UIKit
 class ListaContatosViewController: UITableViewController, FormularioContatoViewControllerDelegate {
     
     var dao:ContatoDao
+    
+    var linhaDestaque: IndexPath?
+    
     static let cellIdentifier = "Cell"
     
     required init?(coder aDecoder: NSCoder) {
@@ -64,6 +67,17 @@ class ListaContatosViewController: UITableViewController, FormularioContatoViewC
     
     override func viewDidAppear(_ animated: Bool) {
         self.tableView.reloadData()
+        
+        if let linha = self.linhaDestaque{
+            
+            self.tableView.selectRow(at: self.linhaDestaque!, animated: true, scrollPosition: .middle)
+            
+            DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(1)){
+                self.tableView.deselectRow(at: linha, animated: true)
+                self.linhaDestaque = Optional.none
+            }
+            
+        }
     }
 
     /*
@@ -107,11 +121,12 @@ class ListaContatosViewController: UITableViewController, FormularioContatoViewC
     }
     
     func contatoAtualizado(_ contato:Contato){
-        print("contato atualizado: \(contato.nome)");
+        self.linhaDestaque = IndexPath(row: dao.buscaPosicaoContato(contato), section: 0)
     }
     
     func contatoAdicionado(_ contato:Contato){
-        print("contato adicionado: \(contato.nome)");
+        self.linhaDestaque = IndexPath(row: dao.buscaPosicaoContato(contato), section: 0)
+        
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?){
@@ -121,6 +136,9 @@ class ListaContatosViewController: UITableViewController, FormularioContatoViewC
             }
         }
     }
+    
+
+    
 
   
 
