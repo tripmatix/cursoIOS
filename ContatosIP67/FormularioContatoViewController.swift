@@ -59,7 +59,6 @@ class FormularioContatoViewController: UIViewController {
         _ = self.navigationController?.popViewController(animated: true)
     }
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         if contato != nil{
@@ -73,6 +72,8 @@ class FormularioContatoViewController: UIViewController {
             self.navigationItem.rightBarButtonItem = botaoAlterar
         }
     }
+    
+
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
