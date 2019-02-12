@@ -42,6 +42,7 @@ class GerenciadorDeAcoes: NSObject{
     }
     
     private func abrirAplicativo(com url:String){
+        
         UIApplication
         .shared
             .open(URL(string: url)!, options: [:], completionHandler: nil)
@@ -67,6 +68,7 @@ class GerenciadorDeAcoes: NSObject{
     }
     
     private func abrirMapa(){
+        print ("abrirMapa")
         
         let url = ("http://maps.google.com/maps?q=" + self.contato.endereco!).addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed)!
         

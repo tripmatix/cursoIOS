@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CoreLocation
 
 class FormularioContatoViewController: UIViewController, UINavigationControllerDelegate, UIImagePickerControllerDelegate {
     
@@ -15,6 +16,9 @@ class FormularioContatoViewController: UIViewController, UINavigationControllerD
     @IBOutlet weak var endereco:   UITextField!
     @IBOutlet weak var site:       UITextField!
     @IBOutlet weak var imageView:  UIImageView!
+    @IBOutlet weak var latitude:   UITextField!
+    @IBOutlet weak var longitude:  UITextField!
+    @IBOutlet weak var loading:    UIActivityIndicatorView!
     
     var dao:ContatoDao
     
@@ -51,6 +55,14 @@ class FormularioContatoViewController: UIViewController, UINavigationControllerD
         contato.endereco = self.endereco.text
         contato.site     = self.site.text
         contato.foto     = self.imageView.image
+        print("atribuiu imageview para contao.foto")
+        if let latitude = Double(self.latitude.text!){
+            self.contato.latitude = latitude as NSNumber
+        }
+        
+        if let longitude = Double(self.longitude.text!){
+            self.contato.longitude = longitude as NSNumber
+        }
     }
     
     func atualizaContato(){
@@ -67,7 +79,7 @@ class FormularioContatoViewController: UIViewController, UINavigationControllerD
                 .nome, preferredStyle: .actionSheet)
             let cancelar = UIAlertAction(title: "Cancelar", style: .cancel, handler: nil)
             let tirarFoto = UIAlertAction(title: "Tirar Foto", style: .default){ (action) in
-            self.pegarImagem(da: .camera)
+                self.pegarImagem(da: .camera)
             }
             
             let escolherFoto = UIAlertAction(title: "Escolher da biblioteca", style: .default){ (action) in self.pegarImagem(da: .photoLibrary)
@@ -87,7 +99,7 @@ class FormularioContatoViewController: UIViewController, UINavigationControllerD
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
         if let imagemSelecionada = info[UIImagePickerControllerEditedImage] as? UIImage{
             self.imageView.image = imagemSelecionada
-
+            
         }
         picker.dismiss(animated: true, completion: nil)
     }
@@ -104,11 +116,16 @@ class FormularioContatoViewController: UIViewController, UINavigationControllerD
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        
+        
         if contato != nil{
             self.nome.text = contato.nome
             self.telefone.text = contato.telefone
             self.endereco.text = contato.endereco
             self.site.text = contato.site
+            self.latitude.text = contato.latitude?.description
+            self.longitude.text = contato.longitude?.description
             
             if let foto = contato.foto{
                 self.imageView.image = self.contato.foto
@@ -122,10 +139,7 @@ class FormularioContatoViewController: UIViewController, UINavigationControllerD
         imageView.layer.borderWidth = 1
         imageView.layer.masksToBounds = false
         imageView.layer.cornerRadius = imageView.frame.size.width/2
-        //            imageView.layer.borderColor = UIColor.blackColor().CGColor
-        //            imageView.layer.cornerRadius = borderColor = profilepic.frame.height/2
         imageView.clipsToBounds = true
-        //            slider.addSubview(profilepic)
         
         let tap = UITapGestureRecognizer(target: self, action: #selector(selecionaFoto(sender:)))
         
@@ -133,7 +147,36 @@ class FormularioContatoViewController: UIViewController, UINavigationControllerD
         
     }
     
-
+    @IBAction func buscarCoordenadas(sender: UIButton){
+        
+        self.loading.startAnimating()
+        sender.isEnabled = false
+        
+        let geocoder = CLGeocoder()
+        
+        if (endereco.text?.isEmpty)! {
+            self.loading.stopAnimating()
+            sender.isEnabled = true
+        } else {
+            geocoder.geocodeAddressString(self.endereco.text!) { (resultado, error) in
+                if error == nil && (resultado?.count)! > 0 {
+                    let placemark = resultado![0]
+                    let coordenada = placemark.location!.coordinate
+                    
+                    self.latitude.text = coordenada.latitude.description
+                    self.longitude.text = coordenada.longitude.description
+                    
+                    self.loading.stopAnimating()
+                    sender.isEnabled = true
+                    
+                }else{
+                    print ("erro geolocalizacao \(error)")
+                    self.loading.stopAnimating()
+                    sender.isEnabled = true
+                }
+            }
+        }
+    }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
