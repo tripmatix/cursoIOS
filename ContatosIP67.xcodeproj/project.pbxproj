@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		3814912C142204E2CD90A96A /* Pods_ContatosIP67.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 140B3A0B1283A724CD2FFDA8 /* Pods_ContatosIP67.framework */; };
+		FD414FA122138E1F007F9718 /* CoreDataUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD414FA022138E1F007F9718 /* CoreDataUtil.swift */; };
 		FD4CE6CD220CFBE100EB1535 /* GerenciadorDeAcoes.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD4CE6CC220CFBE100EB1535 /* GerenciadorDeAcoes.swift */; };
 		FD4CE6D5220E498700EB1535 /* ContatosNoMapaViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD4CE6D4220E498700EB1535 /* ContatosNoMapaViewController.swift */; };
 		FD9D88AC220A3284003D8C9B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD9D88AB220A3284003D8C9B /* AppDelegate.swift */; };
@@ -26,6 +27,7 @@
 		140B3A0B1283A724CD2FFDA8 /* Pods_ContatosIP67.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ContatosIP67.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4789821A4787E5E4B6AB472E /* Pods-ContatosIP67.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ContatosIP67.release.xcconfig"; path = "Target Support Files/Pods-ContatosIP67/Pods-ContatosIP67.release.xcconfig"; sourceTree = "<group>"; };
 		54B878613472F64323145DAF /* Pods-ContatosIP67.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ContatosIP67.debug.xcconfig"; path = "Target Support Files/Pods-ContatosIP67/Pods-ContatosIP67.debug.xcconfig"; sourceTree = "<group>"; };
+		FD414FA022138E1F007F9718 /* CoreDataUtil.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataUtil.swift; sourceTree = "<group>"; };
 		FD4CE6CC220CFBE100EB1535 /* GerenciadorDeAcoes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GerenciadorDeAcoes.swift; sourceTree = "<group>"; };
 		FD4CE6D4220E498700EB1535 /* ContatosNoMapaViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContatosNoMapaViewController.swift; sourceTree = "<group>"; };
 		FD4CE6D6220E5ABD00EB1535 /* Vila Mariana.gpx */ = {isa = PBXFileReference; lastKnownFileType = text.xml; name = "Vila Mariana.gpx"; path = "../Vila Mariana.gpx"; sourceTree = "<group>"; };
@@ -71,7 +73,6 @@
 				54B878613472F64323145DAF /* Pods-ContatosIP67.debug.xcconfig */,
 				4789821A4787E5E4B6AB472E /* Pods-ContatosIP67.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -103,6 +104,7 @@
 				FD9D88C6220A619A003D8C9B /* ListaContatosViewController.swift */,
 				FD4CE6CC220CFBE100EB1535 /* GerenciadorDeAcoes.swift */,
 				FD9D88CA220CD88B003D8C9B /* FormularioContatoViewControllerDelegate.swift */,
+				FD414FA022138E1F007F9718 /* CoreDataUtil.swift */,
 				FD9D88C4220A55A9003D8C9B /* ContatoDao.swift */,
 				FD9D88C1220A4B0F003D8C9B /* Contato.h */,
 				FD9D88C2220A4B0F003D8C9B /* Contato.m */,
@@ -192,15 +194,11 @@
 			buildActionMask = 2147483647;
 			files = (
 			);
-			inputFileListPaths = (
-			);
 			inputPaths = (
 				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
 				"${PODS_ROOT}/Manifest.lock",
 			);
 			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
 			outputPaths = (
 				"$(DERIVED_FILE_DIR)/Pods-ContatosIP67-checkManifestLockResult.txt",
 			);
@@ -214,15 +212,11 @@
 			buildActionMask = 2147483647;
 			files = (
 			);
-			inputFileListPaths = (
-			);
 			inputPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-ContatosIP67/Pods-ContatosIP67-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/TPKeyboardAvoiding/TPKeyboardAvoiding.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-			);
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/TPKeyboardAvoiding.framework",
 			);
@@ -246,6 +240,7 @@
 				FD9D88C5220A55A9003D8C9B /* ContatoDao.swift in Sources */,
 				FD9D88C7220A619A003D8C9B /* ListaContatosViewController.swift in Sources */,
 				FD9D88B4220A3284003D8C9B /* ContatosIP67.xcdatamodeld in Sources */,
+				FD414FA122138E1F007F9718 /* CoreDataUtil.swift in Sources */,
 				FD9D88AC220A3284003D8C9B /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

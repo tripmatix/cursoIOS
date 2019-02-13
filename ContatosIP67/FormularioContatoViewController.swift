@@ -55,7 +55,7 @@ class FormularioContatoViewController: UIViewController, UINavigationControllerD
         contato.endereco = self.endereco.text
         contato.site     = self.site.text
         contato.foto     = self.imageView.image
-        print("atribuiu imageview para contao.foto")
+        
         if let latitude = Double(self.latitude.text!){
             self.contato.latitude = latitude as NSNumber
         }
