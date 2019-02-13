@@ -31,6 +31,7 @@ class ContatoDao: CoreDataUtil {
         super.init()
         self.inserirDadosIniciais()
         print ("Caminho do BD: \(NSHomeDirectory())")
+        self.carregaContatos()
     }
     
     func listaTodos() -> [Contato]{
@@ -70,6 +71,21 @@ class ContatoDao: CoreDataUtil {
             
             configuracoes.synchronize()
             
+        }
+    }
+    
+    func carregaContatos(){
+        let busca = NSFetchRequest<Contato>(entityName: "Contato")
+        
+        let orderPorNome = NSSortDescriptor(key: "nome", ascending: true)
+        
+        busca.sortDescriptors = [orderPorNome]
+        
+        do {
+            self.contatos = try self.persistentContainer.viewContext.fetch(busca)
+            
+        }catch let error as NSError{
+            print ("Fetch Falhou: \(error.localizedDescription)")
         }
     }
     
