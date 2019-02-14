@@ -43,7 +43,11 @@ class ContatoDao: CoreDataUtil {
     }
     
     func remove(_ posicao:Int){
-        contatos.remove(at:posicao)
+// remover antes do core data
+//       contatos.remove(at:posicao)
+// remover com core data
+        persistentContainer.viewContext.delete(contatos[posicao])
+        contatos.remove(at: posicao)
     }
     
     func buscaPosicaoContato (_ contato:Contato) -> Int {
@@ -87,6 +91,10 @@ class ContatoDao: CoreDataUtil {
         }catch let error as NSError{
             print ("Fetch Falhou: \(error.localizedDescription)")
         }
+    }
+    
+    func novoContato() -> Contato{
+        return NSEntityDescription.insertNewObject(forEntityName: "Contato", into: self.persistentContainer.viewContext) as! Contato
     }
     
 }

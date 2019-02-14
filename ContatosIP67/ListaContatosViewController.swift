@@ -126,20 +126,26 @@ class ListaContatosViewController: UITableViewController, FormularioContatoViewC
     
     func contatoAtualizado(_ contato:Contato){
         self.linhaDestaque = IndexPath(row: dao.buscaPosicaoContato(contato), section: 0)
+        ContatoDao.sharedInstance().saveContext()
     }
     
     func contatoAdicionado(_ contato:Contato){
         self.linhaDestaque = IndexPath(row: dao.buscaPosicaoContato(contato), section: 0)
+        ContatoDao.sharedInstance().saveContext()
         
     }
     
+/*    func salvaContato(_ contato: ContatoDao) {
+        self.dao.saveContext()
+    }
+ */   
     override func prepare(for segue: UIStoryboardSegue, sender: Any?){
         if segue.identifier == "FormSegue"{
             if let formulario = segue.destination as? FormularioContatoViewController{
                 formulario.delegate = self
             }
         }
-    }
+    } 
     
     
     func exibirMaisAcoes(gesture: UIGestureRecognizer){

@@ -47,7 +47,7 @@ class FormularioContatoViewController: UIViewController, UINavigationControllerD
     func pegaDadosDoFormulario(){
         
         if contato == nil{
-            self.contato = Contato();
+            self.contato = dao.novoContato();
             //        let contato: Contato = Contato()
         }
         contato.nome     = self.nome.text
@@ -69,6 +69,7 @@ class FormularioContatoViewController: UIViewController, UINavigationControllerD
         pegaDadosDoFormulario()
         
         self.delegate?.contatoAtualizado(contato)
+//        self.delegate?.salvaContato(dao.contatos)
         
         _ = self.navigationController?.popViewController(animated: true)
     }

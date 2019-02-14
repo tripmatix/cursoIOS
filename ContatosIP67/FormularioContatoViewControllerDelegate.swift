@@ -11,4 +11,6 @@ import Foundation
 protocol FormularioContatoViewControllerDelegate {
     func contatoAtualizado(_ contato:Contato)
     func contatoAdicionado(_ contato:Contato)
+//  ContatoDao.sharedInstance().saveContext()
+//    func salvaContato(_ contato:ContatoDao)
 }
