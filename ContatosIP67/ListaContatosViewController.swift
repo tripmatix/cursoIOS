@@ -24,6 +24,12 @@ class ListaContatosViewController: UITableViewController, FormularioContatoViewC
     override func viewDidLoad() {
         super.viewDidLoad()
         
+// PARTE DA ENTREVISTA, TENTANDO SEPARAR AS CELULAS
+        self.tableView.separatorStyle = UITableViewCellSeparatorStyle.singleLine
+        self.tableView.backgroundColor = UIColor.blue
+        self.tableView.separatorColor = UIColor.red
+//        self.tableView.separator
+        
         let longPress = UILongPressGestureRecognizer(target: self, action: #selector(exibirMaisAcoes(gesture:)))
         
         self.tableView.addGestureRecognizer(longPress)
@@ -54,13 +60,13 @@ class ListaContatosViewController: UITableViewController, FormularioContatoViewC
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        
         let contato:Contato = self.dao.buscaContatoNaPosicao(indexPath.row)
         
         var cell:UITableViewCell? = tableView.dequeueReusableCell(withIdentifier: ListaContatosViewController.cellIdentifier)
         
         if cell == nil{
             cell = UITableViewCell(style: .subtitle, reuseIdentifier: ListaContatosViewController.cellIdentifier)
+            
         }
         
         cell!.textLabel?.text = contato.nome

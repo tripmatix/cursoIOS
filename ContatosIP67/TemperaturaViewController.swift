@@ -14,8 +14,14 @@ class TemperaturaViewController: UIViewController {
     @IBOutlet weak var labelTemperaturaMaxima: UILabel!
     @IBOutlet weak var labelTemperaturaMinima: UILabel!
     @IBOutlet weak var imageView: UIImageView!
+    @IBOutlet weak var labelNomeContato: UILabel!
+    @IBOutlet weak var labelEnderecoContato: UILabel!
 
     var contato:Contato?
+    
+    deinit {
+        NotificationCenter.default.removeObserver(self)
+    }
     
     let URL_BASE = "https://api.openweathermap.org/data/2.5/weather?APPID=588a634b51de2ec8bfea4b01e73a92dc&units=metric"
     
@@ -23,6 +29,9 @@ class TemperaturaViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        // Cria notificação para detectar mudança de orientação em tempo real
+        NotificationCenter.default.addObserver(self, selector: #selector(TemperaturaViewController.orientationChanged), name: NSNotification.Name.UIDeviceOrientationDidChange, object: nil)
         
         if let contato = self.contato {
             
@@ -114,5 +123,22 @@ class TemperaturaViewController: UIViewController {
         // Pass the selected object to the new view controller.
     }
     */
+    
+    func orientationChanged(){
+        // Verifica ambiente (size classes)
+        // Carrega campos de contato apenas se estivermos num ambiente wR (Plus e iPads em landscape)
+        if sizeClass() == (UIUserInterfaceSizeClass.regular, UIUserInterfaceSizeClass.compact){
+            
+            
+            labelNomeContato.text = contato?.nome
+            labelEnderecoContato.text = contato?.endereco
+        }
+    }
 
+}
+
+extension UIViewController {
+    func sizeClass() ->(UIUserInterfaceSizeClass, UIUserInterfaceSizeClass){
+        return(traitCollection.horizontalSizeClass, traitCollection.verticalSizeClass)
+    }
 }
